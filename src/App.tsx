@@ -1,7 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import * as P from "./pages/index";
+
 import GlobalStyle from "./styles/app";
+import * as P from "./pages/index";
 
 import Logo from "./components/Logo";
 import Wrapper from "./components/Wrapper";

@@ -2,26 +2,23 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Logo = styled(Link)`
-  text-decoration: none;
-
   color: #e0dbd1;
   font-size: 5.5vh;
+  text-decoration: none;
 
   cursor: pointer;
   transition: filter 0.25s;
 
-  @media only screen and (max-width: 500px) {
-    font-size: 5vh;
-  }
-
   :hover {
     filter: drop-shadow(0 0 0.5vh #fff);
+  }
+
+  @media only screen and (max-width: 500px) {
+    font-size: 5vh;
   }
 `;
 
 export const Wrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.25);
-
   margin: 0 auto;
   margin-top: 4vh;
 
@@ -32,8 +29,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-
-  border-radius: 1.5vh;
 `;
 
 export const Button = styled(Link)`
