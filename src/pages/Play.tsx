@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import * as S from "../styles/play";
-const stringSimilarity: any = require("string-similarity");
+
+import Input from "../components/Input";
 
 function Home() {
   const [word, setWord] = useState<string>("");
@@ -9,9 +10,7 @@ function Home() {
   const [picture, setPicture] = useState<string>("");
   const [similarity, setSimilarity] = useState<number>(0);
   const [status, setStatus] = useState<boolean>(false);
-  let temp: string;
-
-  const inputRef = useRef<HTMLInputElement>(null);
+  let temp: string = "";
 
   const Test = () => {
     axios
@@ -36,6 +35,7 @@ function Home() {
           .then((res: any) => {
             setWord(temp);
             setPicture(res.data.photos[0].src.medium);
+            temp = "";
           })
           .catch(() => {
             return;
@@ -46,14 +46,6 @@ function Home() {
       });
   };
 
-  const checkValue = () => {
-    setSimilarity(
-      stringSimilarity.compareTwoStrings(word, inputRef.current?.value)
-    );
-    if (inputRef.current?.value === word) setStatus(true);
-    else if (status === true) setStatus(false);
-  };
-
   return (
     <>
       {!picture && <S.Button onClick={Test}>START</S.Button>}
@@ -62,12 +54,12 @@ function Home() {
           <S.Image src={picture}></S.Image>
           {meaning && <S.Meaning>{meaning}</S.Meaning>}
           {status === true && <S.Word>{word}</S.Word>}
-          <S.Input
-            ref={inputRef}
-            placeholder="Type Someting..."
-            maxLength={word.length}
+          <Input
+            word={word}
+            temp={temp}
             status={status}
-            onChange={checkValue}
+            setStatus={setStatus}
+            setSimilarity={setSimilarity}
           />
           {similarity && <S.Meaning>{similarity * 100} %</S.Meaning>}
         </>

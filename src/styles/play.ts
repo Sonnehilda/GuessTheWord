@@ -90,16 +90,21 @@ interface InputProps {
   status: boolean;
 }
 
+export const InputWrapper = styled.div``;
+
 export const Input = styled.input<InputProps>`
   all: unset;
 
-  width: 50vh;
+  margin-left: 0.5vh;
+  margin-right: 0.5vh;
+
+  width: 4vh;
 
   font-size: 3vh;
   color: ${(props) => (props.status === true ? "#bcdf8a" : "#e0dbd1")};
   text-align: center;
 
-  border-bottom: 0.1vh solid rgba(224, 219, 209, 0);
+  border-bottom: 0.1vh solid rgba(224, 219, 209, 1);
   box-sizing: border-box;
 
   transition: border-bottom 0.25s;
