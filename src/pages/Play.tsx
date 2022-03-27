@@ -11,6 +11,7 @@ function Home() {
   const [similarity, setSimilarity] = useState<number>(0);
   const [status, setStatus] = useState<boolean>(false);
   let temp: string = "";
+  let temp2: string = "";
 
   const Test = () => {
     axios
@@ -20,7 +21,7 @@ function Home() {
         axios
           .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${temp}`)
           .then((res) => {
-            setMeaning(res.data[0].meanings[0].definitions[0].definition);
+            temp2 = res.data[0].meanings[0].definitions[0].definition;
           })
           .catch(() => {
             return;
@@ -35,6 +36,7 @@ function Home() {
           .then((res: any) => {
             setWord(temp);
             setPicture(res.data.photos[0].src.medium);
+            setMeaning(temp2);
             temp = "";
           })
           .catch(() => {
