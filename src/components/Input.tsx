@@ -1,54 +1,59 @@
 import React, { useRef } from "react";
 import * as S from "../styles/play";
+
 const stringSimilarity: any = require("string-similarity");
+
+type setBooleanState = React.Dispatch<React.SetStateAction<boolean>>;
 
 interface InputProps {
   word: string;
-  temp: string;
   status: boolean;
-  setStatus: any;
-  setSimilarity: any;
+  setStatus: setBooleanState;
 }
 
 const Input = React.memo(function Input({
   word,
-  temp,
   status,
   setStatus,
-  setSimilarity,
 }: InputProps) {
   const inputRef = useRef<any>([]);
 
   const onKeyDown = (e: any) => {
     const id: string = e.target.id;
     const key: string = e.key.toLowerCase();
-    const currentRef: number = parseInt(e.target.id);
+    const currentRef: number = parseInt(id);
+
+    let temp: string = "";
 
     if (currentRef > 0) {
       if (key === "backspace" || key === "arrowleft") {
-        e.preventDefault();
+        if (key === "arrowleft") e.preventDefault();
         const prevRef: string = (currentRef - 1).toString();
-
-        if (key !== "arrowleft") inputRef.current[id].value = "";
-        inputRef.current[prevRef].focus();
+        if (inputRef.current[id].value === "") {
+          if (key !== "arrowleft") inputRef.current[id].value = "";
+          inputRef.current[prevRef].focus();
+        } else {
+          if (key !== "arrowleft") inputRef.current[id].value = "";
+          inputRef.current[currentRef].focus();
+        }
       }
     }
+
     if (currentRef + 1 < word.length) {
       if (key.length === 1 || key === "arrowright") {
         e.preventDefault();
         const nextRef: string = (currentRef + 1).toString();
-        const nextNextRef: string = (currentRef + 2).toString();
-
         if (key !== "arrowright")
           if (inputRef.current[id].value === "") {
             inputRef.current[id].value = key;
-            inputRef.current[nextRef].focus();
           } else if (currentRef < word.length) {
             inputRef.current[nextRef].value = key;
-            if (currentRef + 2 < word.length)
-              inputRef.current[nextNextRef].focus();
-            else inputRef.current[nextRef].focus();
           }
+        if (inputRef.current[id].value === "") {
+          inputRef.current[nextRef].focus();
+        } else if (currentRef < word.length) {
+          inputRef.current[nextRef].focus();
+        }
       }
     }
 
@@ -58,18 +63,12 @@ const Input = React.memo(function Input({
         else temp = temp + inputRef.current[index].value;
     });
 
-    console.log(temp + ", " + word);
-
     const similarity: number = stringSimilarity
-      .compareTwoStrings(word, temp)
+      .compareTwoStrings(word.toLowerCase(), temp.toLowerCase())
       .toFixed(1);
-
-    setSimilarity(similarity);
 
     if (Math.floor(similarity) === 1) setStatus(true);
     else setStatus(false);
-
-    temp = "";
   };
 
   return (
@@ -81,10 +80,11 @@ const Input = React.memo(function Input({
             <S.Input
               id={index.toString()}
               key={index}
-              ref={(itself) => (inputRef.current[index] = itself)}
+              ref={(input) => (inputRef.current[index] = input)}
               maxLength={1}
               status={status}
               onKeyDown={(e) => onKeyDown(e)}
+              autoComplete="off"
             />
           );
         })}
