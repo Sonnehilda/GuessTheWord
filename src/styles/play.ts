@@ -59,15 +59,37 @@ export const Button = styled.button`
 export const ImageWrapper = styled.div`
   display: inline-flex;
   justify-content: center;
-  align-items: center;
 `;
 
 export const Status = styled.div`
   position: absolute;
 
+  width: 50vh;
+
+  display: flex;
+  justify-content: center;
+
   color: #e0dbd1;
 
+  opacity: 0;
+  filter: drop-shadow(0 0 0.5vh #000);
   z-index: 2;
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+      margin-top: 25vh;
+    }
+    50% {
+      opacity: 1;
+      margin-top: 12.5vh;
+    }
+    100% {
+      opacity: 0;
+      margin-top: 0vh;
+    }
+  }
+  animation: fade 3s ease-in-out;
 `;
 
 export const Image = styled.img<StatusProps>`
@@ -104,9 +126,8 @@ export const Meaning = styled.div`
   white-space: normal;
 `;
 
-export const Word = styled.div<StatusProps>`
+export const Word = styled.div`
   font-size: 4.5vh;
-  color: ${(props) => (props.status === true ? "#bcdf8a" : "#e0dbd1")};
   text-align: center;
   overflow: visible;
   text-overflow: clip;
@@ -115,7 +136,7 @@ export const Word = styled.div<StatusProps>`
 
 export const InputWrapper = styled.div``;
 
-export const Input = styled.input<StatusProps>`
+export const Input = styled.input`
   all: unset;
 
   margin-left: 0.5vh;
@@ -125,7 +146,7 @@ export const Input = styled.input<StatusProps>`
   height: 4vh;
 
   font-size: 3vh;
-  color: ${(props) => (props.status === true ? "#bcdf8a" : "#e0dbd1")};
+  color: "#e0dbd1";
   text-align: center;
 
   border-bottom: 0.1vh solid rgba(224, 219, 209, 1);

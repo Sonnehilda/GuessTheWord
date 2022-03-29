@@ -68,7 +68,6 @@ const Input = React.memo(function Input({
       .toFixed(1);
 
     if (Math.floor(similarity) === 1) setStatus(true);
-    else setStatus(false);
   };
 
   return (
@@ -82,7 +81,6 @@ const Input = React.memo(function Input({
               key={index}
               ref={(input) => (inputRef.current[index] = input)}
               maxLength={1}
-              status={status}
               onKeyDown={(e) => onKeyDown(e)}
               autoComplete="off"
             />
