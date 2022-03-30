@@ -7,15 +7,10 @@ type setBooleanState = React.Dispatch<React.SetStateAction<boolean>>;
 
 interface InputProps {
   word: string;
-  status: boolean;
   setStatus: setBooleanState;
 }
 
-const Input = React.memo(function Input({
-  word,
-  status,
-  setStatus,
-}: InputProps) {
+const Input = React.memo(function Input({ word, setStatus }: InputProps) {
   const inputRef = useRef<any>([]);
 
   const onKeyDown = (e: any) => {

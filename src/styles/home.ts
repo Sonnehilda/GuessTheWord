@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
   margin-top: 4vh;
 
   width: 90vw;
-  height: 90vh;
+  height: 82.5vh;
 
   display: flex;
   flex-direction: column;

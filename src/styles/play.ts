@@ -61,19 +61,21 @@ export const ImageWrapper = styled.div`
   justify-content: center;
 `;
 
-export const Status = styled.div`
+export const Status = styled.div<StatusProps>`
   position: absolute;
 
-  width: 50vh;
+  width: 50.5vh;
+  color: #e0dbd1;
+
+  filter: drop-shadow(0 0 0.5vh #000);
+  ${(props) =>
+    props.status === true
+      ? `
 
   display: flex;
   justify-content: center;
 
-  color: #e0dbd1;
-
   opacity: 0;
-  filter: drop-shadow(0 0 0.5vh #000);
-  z-index: 2;
 
   @keyframes fade {
     0% {
@@ -89,7 +91,21 @@ export const Status = styled.div`
       margin-top: 0vh;
     }
   }
-  animation: fade 3s ease-in-out;
+  animation: fade 3s ease-in-out;`
+      : `
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  
+  margin-top: 29.5vh;
+
+  font-size: 2.5vh;
+  
+  border-bottom-left-radius: 1.5vh;
+  border-bottom-right-radius: 1.5vh;`}
+
+  z-index: 2;
 `;
 
 export const Image = styled.img<StatusProps>`
@@ -103,27 +119,16 @@ export const Image = styled.img<StatusProps>`
   );
 
   width: 50vh;
-  max-height: 35vh;
+  height: 35vh;
 
   border: 0.25vh solid #e0dbd1;
   border-radius: 1.5vh;
 
   object-fit: contain;
 
-  transition: filter 0.25s;
+  transition: filter 0.5s;
   ${(props) =>
     props.status === true ? "filter: brightness(75%) blur(0.25vh)" : ""}
-`;
-
-export const Meaning = styled.div`
-  padding-left: 1vh;
-  padding-right: 1vh;
-
-  font-size: 2.25vh;
-  text-align: center;
-  overflow: visible;
-  text-overflow: clip;
-  white-space: normal;
 `;
 
 export const Word = styled.div`
@@ -134,7 +139,10 @@ export const Word = styled.div`
   white-space: normal;
 `;
 
-export const InputWrapper = styled.div``;
+export const InputWrapper = styled.div`
+  width: max-content;
+  height: max-content;
+`;
 
 export const Input = styled.input`
   all: unset;

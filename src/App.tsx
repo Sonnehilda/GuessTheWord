@@ -6,6 +6,7 @@ import * as P from "./pages/index";
 
 import Logo from "./components/Logo";
 import Wrapper from "./components/Wrapper";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/play" element={<P.Play />} />
         </Routes>
       </Wrapper>
+      <Footer />
     </>
   );
 }

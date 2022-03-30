@@ -4,6 +4,7 @@ import * as S from "../styles/play";
 
 import Input from "../components/Input";
 import Timer from "../components/Timer";
+import Meaning from "../components/Meaning";
 
 const randomWords = require("random-words");
 
@@ -33,45 +34,49 @@ function Home() {
   ];
 
   const [word, setWord] = useState<string>("");
-  const [meaning, setMeaning] = useState<string>("");
-  const [picture, setPicture] = useState<string>("");
+  const [meaning, setMeaning] = useState<object[]>([]);
+  const [photograph, setPhotograph] = useState<string>("");
+  const [photographer, setPhotographer] = useState<string>("");
+  const [compliment, setCompliment] = useState<string>("");
   const [status, setStatus] = useState<boolean>(false);
 
   const wordRef = useRef<string>("");
-  const meaningRef = useRef<string>("");
-  const pictureRef = useRef<string>("");
 
   useEffect(() => {
     if (status === true) {
-      setTimeout(() => {
-        const asyncFunc = async () => {
-          initData();
-        };
-        asyncFunc().then(() => {
-          renderData();
+      const asyncFunc = async () => {
+        initData();
+      };
+      asyncFunc().then(() => {
+        setTimeout(() => {
           setStatus(false);
-        });
-      }, 3000);
+          setCompliment(
+            compliments[Math.floor(Math.random() * compliments.length)]
+          );
+        }, 3000);
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
-  const initData = (e?: any) => {
-    if (e) e.target.disabled = true;
+  const initWord = () => {
     wordRef.current = randomWords().toLowerCase();
+  };
 
-    axios
+  const initMeaning = async () => {
+    await axios
       .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordRef.current}`)
       .then((res) => {
-        meaningRef.current = res.data[0].meanings[0].definitions[0].definition;
+        setMeaning(res.data[0].meanings[0].definitions);
       })
       .catch((err) => {
+        setMeaning([]);
         console.log(err);
-        if (e) e.target.disabled = false;
-        return;
       });
+  };
 
-    axios
+  const initPhoto = async () => {
+    await axios
       .get(
         `https://api.pexels.com/v1/search?query=${wordRef.current}&per_page=1`,
         {
@@ -82,67 +87,58 @@ function Home() {
         }
       )
       .then((res) => {
-        pictureRef.current = res.data.photos[0].src.medium;
+        setPhotograph(res.data.photos[0].src.medium);
+        setPhotographer(res.data.photos[0].photographer);
       })
       .catch((err) => {
+        setPhotograph("");
+        setPhotographer("Picture Not Included");
         console.log(err);
-        if (e) e.target.disabled = false;
-        return;
       });
+    setWord(wordRef.current);
   };
 
-  const renderData = () => {
-    if (wordRef.current && meaningRef.current && pictureRef.current) {
-      setWord(wordRef.current);
-      setMeaning(meaningRef.current);
-      setPicture(pictureRef.current);
-    }
+  const initData = () => {
+    initWord();
+    initPhoto();
+    initMeaning();
   };
 
   const resetData = () => {
     console.log("END");
   };
 
-  console.log("RE_RENDER");
   console.log(word);
 
   return (
     <>
-      {" "}
-      {!picture && (
-        <S.Button
-          onClick={() => {
-            const asyncFunc = async () => {
-              initData();
-            };
-            asyncFunc().then(renderData);
-          }}
-        >
-          START
-        </S.Button>
-      )}
-      {picture && meaning && (
+      {photograph ? (
         <>
           <S.ImageWrapper>
-            {status === true && (
-              <S.Status>
-                {compliments[Math.floor(Math.random() * compliments.length)]}
-              </S.Status>
-            )}
-            <S.Image status={status} src={picture}></S.Image>
+            <S.Status status={status}>
+              {status === true ? compliment : photographer}
+            </S.Status>
+            <S.Image status={status} src={photograph}></S.Image>
           </S.ImageWrapper>
-          {meaning && status === true ? (
-            <S.Word>{word}</S.Word>
-          ) : (
-            <S.Meaning>{meaning}</S.Meaning>
-          )}
           {status === false && (
             <>
-              <Input word={word} status={status} setStatus={setStatus} />
+              <Meaning word={word} meaning={meaning} />
+              <Input word={wordRef.current} setStatus={setStatus} />
               <Timer resetData={resetData} />
             </>
           )}
         </>
+      ) : (
+        <S.Button
+          onClick={() => {
+            setCompliment(
+              compliments[Math.floor(Math.random() * compliments.length)]
+            );
+            initData();
+          }}
+        >
+          START
+        </S.Button>
       )}
     </>
   );
