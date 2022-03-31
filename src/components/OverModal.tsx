@@ -14,6 +14,8 @@ interface OverProps {
 }
 
 const OverModal = ({ word, setOpenState }: OverProps) => {
+  const lang: string = localStorage.getItem("language") || "EN";
+
   const closeModal = () => {
     setOpenState(false);
   };
@@ -23,12 +25,18 @@ const OverModal = ({ word, setOpenState }: OverProps) => {
   return (
     <>
       <S.Wrapper>
-        <S.Title>Game Over!</S.Title>
+        <S.Title>
+          {lang === "KR" ? "게임이 종료되었습니다!" : "Game Over!"}
+        </S.Title>
         <S.TitleWrapper>
-          <S.SubTitle>The word was...</S.SubTitle>
+          <S.SubTitle>
+            {lang === "KR" ? "방금 단어는..." : "The word was..."}
+          </S.SubTitle>
           <S.Word>{word}</S.Word>
           <S.SubTitle>
-            You've guessed <span>{scoreCount}</span> word(s)!
+            {lang === "KR" ? "당신은 " : "You've guessed "}
+            <span>{scoreCount}</span>
+            {lang === "KR" ? " 개의 단어를 추측했습니다!" : "word(s)!"}
           </S.SubTitle>
         </S.TitleWrapper>
         <S.Close

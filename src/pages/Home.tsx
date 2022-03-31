@@ -5,6 +5,9 @@ import * as S from "../styles/home";
 const Theme = require("../assets/bgms/theme.mp3");
 
 function Home() {
+  const lang: string = localStorage.getItem("language") || "EN";
+  console.log(lang);
+
   const BGM = new Audio(Theme);
 
   const savedBgmVolume: number = localStorage.getItem("bgmvolume")
@@ -55,13 +58,13 @@ function Home() {
   return (
     <>
       <S.Button onMouseEnter={onHover} onClick={onClick} to="/play">
-        PLAY
+        {lang === "KR" ? "플레이" : "PLAY"}
       </S.Button>
       <S.Button onMouseEnter={onHover} onClick={onClick} to="/settings">
-        SETTINGS
+        {lang === "KR" ? "설정" : "SETTINGS"}
       </S.Button>
       <S.Button onMouseEnter={onHover} onClick={onClick} to="/">
-        ABOUT
+        {lang === "KR" ? "소개" : "ABOUT"}
       </S.Button>
     </>
   );

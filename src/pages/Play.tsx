@@ -18,6 +18,8 @@ const Correct = require("../assets/sfxes/correct.mp3");
 const Over = require("../assets/sfxes/over.mp3");
 
 function Play() {
+  const lang: string = localStorage.getItem("language") || "EN";
+
   const BGM = new Audio(Game);
   const CorrectSFX = new Audio(Correct);
   const GameOverSFX = new Audio(Over);
@@ -149,7 +151,7 @@ function Play() {
       })
       .catch((err) => {
         setPhotograph("");
-        setPhotographer("Picture Not Included");
+        setPhotographer("");
         console.error(err);
       });
     setWord(wordRef.current);
@@ -180,8 +182,6 @@ function Play() {
       setOpenState(true);
     }, 0);
   };
-
-  console.log(word);
 
   return (
     <>
@@ -221,7 +221,7 @@ function Play() {
             initData();
           }}
         >
-          START
+          {lang === "KR" ? "시작" : "START"}
         </S.Button>
       )}
     </>

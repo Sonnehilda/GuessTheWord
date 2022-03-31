@@ -12,6 +12,8 @@ interface MeaningProps {
 }
 
 const MeaningModal = ({ word, meaning }: MeaningProps) => {
+  const lang: string = localStorage.getItem("language") || "EN";
+
   const [openState, setOpenState] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
 
@@ -30,7 +32,7 @@ const MeaningModal = ({ word, meaning }: MeaningProps) => {
     <>
       {openState === true && (
         <S.Wrapper onClick={closeModal}>
-          <S.Title>Meanings</S.Title>
+          <S.Title>{lang === "KR" ? "뜻" : "Meanings"}</S.Title>
           <S.Meaning>
             {meaning &&
               meaning[page] &&
@@ -67,7 +69,7 @@ const MeaningModal = ({ word, meaning }: MeaningProps) => {
           setOpenState(!openState);
         }}
       >
-        See Meanings...
+        {lang === "KR" ? "뜻 보기" : "See Meanings..."}
       </S.Button>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { onClick, onHover, updateSettings } from "../assets/sfxFunc";
 import * as S from "../styles/settings";
 
@@ -19,17 +19,15 @@ function Settings() {
     localStorage.getItem("sfxtoggle") || "true"
   );
 
+  const lang = localStorage.getItem("language") || "EN";
+
   const bgmVolumeBar = useRef<any>();
   const bgmVolumeDisplay = useRef<any>();
   const sfxVolumeBar = useRef<any>();
   const sfxVolumeDisplay = useRef<any>();
   const bgmSwitch = useRef<any>();
   const sfxSwitch = useRef<any>();
-
-  const [alert, setAlert] = useState<string>("");
-  const [lang, setLang] = useState<string>(
-    localStorage.getItem("language") || "EN"
-  );
+  const langSelect = useRef<any>();
 
   useEffect(() => {
     BGM.loop = true;
@@ -101,17 +99,16 @@ function Settings() {
     updateSettings();
   };
 
-  const changeLang = (e: any) => {
-    localStorage.setItem("language", e.target.value);
-    setLang(e.target.value);
-    if (alert !== "") setAlert("Changes will apply when refreshing.");
+  const changeLang = () => {
+    localStorage.setItem("language", langSelect.current.value);
+    window.location.reload();
   };
 
   return (
     <>
       <S.Wrapper>
         <S.TextWrapper>
-          <S.Text>Music Volume</S.Text>
+          <S.Text>{lang === "KR" ? "음악 볼륨" : "Music Volume"}</S.Text>
           <S.Checkbox
             type="checkbox"
             ref={bgmSwitch}
@@ -145,7 +142,7 @@ function Settings() {
 
       <S.Wrapper>
         <S.TextWrapper>
-          <S.Text>SFX Volume</S.Text>
+          <S.Text>{lang === "KR" ? "효과음 볼륨" : "SFX Volume"}</S.Text>
           <S.Checkbox
             ref={sfxSwitch}
             type="checkbox"
@@ -169,9 +166,11 @@ function Settings() {
           max="100"
           ref={sfxVolumeBar}
           onInput={changeSfxVolumeStart}
-          onMouseUp={changeSfxVolumeEnd}
+          onMouseUp={() => {
+            changeSfxVolumeEnd();
+            onClick();
+          }}
           onMouseEnter={onHover}
-          onMouseDown={onClick}
           defaultValue={savedSfxVolume}
         />
         <S.Value ref={sfxVolumeDisplay}>{savedSfxVolume}</S.Value>
@@ -179,9 +178,9 @@ function Settings() {
 
       <S.Wrapper>
         <S.TextWrapper>
-          <S.Text>Language</S.Text>
+          <S.Text>{lang === "KR" ? "언어" : "Language"}</S.Text>
         </S.TextWrapper>
-        <S.Lang onChange={changeLang} defaultValue={lang}>
+        <S.Lang ref={langSelect} onChange={changeLang} defaultValue={lang}>
           <option value="EN">English</option>
           <option value="KR">Korean</option>
         </S.Lang>
