@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addScore } from "../store/score/actions";
 import * as S from "../styles/play";
 
 const stringSimilarity: any = require("string-similarity");
@@ -12,6 +14,8 @@ interface InputProps {
 
 const Input = React.memo(function Input({ word, setStatus }: InputProps) {
   const inputRef = useRef<any>([]);
+
+  const dispatch = useDispatch();
 
   const onKeyDown = (e: any) => {
     const id: string = e.target.id;
@@ -62,7 +66,10 @@ const Input = React.memo(function Input({ word, setStatus }: InputProps) {
       .compareTwoStrings(word.toLowerCase(), temp.toLowerCase())
       .toFixed(1);
 
-    if (Math.floor(similarity) === 1) setStatus(true);
+    if (Math.floor(similarity) === 1) {
+      dispatch(addScore(1));
+      setStatus(true);
+    }
   };
 
   return (

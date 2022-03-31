@@ -10,7 +10,7 @@ interface MeaningProps {
   word: string;
 }
 
-const Meaning = ({ word, meaning }: MeaningProps) => {
+const MeaningModal = ({ word, meaning }: MeaningProps) => {
   const [openState, setOpenState] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
 
@@ -47,4 +47,4 @@ const Meaning = ({ word, meaning }: MeaningProps) => {
   );
 };
 
-export default Meaning;
+export default MeaningModal;

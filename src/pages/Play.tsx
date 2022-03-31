@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import * as S from "../styles/play";
 
 import Input from "../components/Input";
 import Timer from "../components/Timer";
-import Meaning from "../components/Meaning";
+import MeaningModal from "../components/MeaningModal";
 import { compliments } from "../assets/fonts/compliments";
+import OverModal from "../components/OverModal";
+import { setScore } from "../store/score/actions";
 
 const randomWords = require("random-words");
 
@@ -15,9 +18,12 @@ function Home() {
   const [photograph, setPhotograph] = useState<string>("");
   const [photographer, setPhotographer] = useState<string>("");
   const [status, setStatus] = useState<boolean>(false);
+  const [openState, setOpenState] = useState<boolean>(false);
   const [compliment, setCompliment] = useState<string>("");
 
   const wordRef = useRef<string>("");
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (status === true) {
@@ -84,19 +90,25 @@ function Home() {
   };
 
   const resetData = () => {
-    wordRef.current = "";
-    //setWord("");
-    //setMeaning([]);
-    setPhotograph("");
-    setPhotographer("");
-    setStatus(false);
-    setCompliment("");
+    setTimeout(() => {
+      //wordRef.current = "";
+      //setWord("");
+      setMeaning([]);
+      setPhotograph("");
+      setPhotographer("");
+      setStatus(false);
+      setCompliment("");
+      setOpenState(true);
+    }, 0);
   };
 
   console.log(word);
 
   return (
     <>
+      {openState === true && (
+        <OverModal word={word} setOpenState={setOpenState} />
+      )}
       {photograph ? (
         <>
           <S.ImageWrapper>
@@ -107,7 +119,7 @@ function Home() {
           </S.ImageWrapper>
           {status === false && (
             <>
-              <Meaning word={word} meaning={meaning} />
+              <MeaningModal word={word} meaning={meaning} />
               <Input word={wordRef.current} setStatus={setStatus} />
               <Timer resetData={resetData} />
             </>
@@ -116,6 +128,7 @@ function Home() {
       ) : (
         <S.Button
           onClick={() => {
+            dispatch(setScore(0));
             setCompliment(
               compliments[Math.floor(Math.random() * compliments.length)]
             );

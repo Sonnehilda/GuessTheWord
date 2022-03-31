@@ -59,21 +59,18 @@ export const Wrapper = styled.div`
   background: rgba(0, 0, 0, 0.875);
 
   width: 55vh;
-  height: 80vh;
 
   border-radius: 1.5vh;
   z-index: 3;
 `;
 
-export const Meaning = styled.div`
-  padding-left: 5vw;
-  padding-right: 5vw;
+export const TitleWrapper = styled.div`
+  margin-bottom: 2vh;
 
-  font-size: 2.5vh;
-  text-align: center;
-  overflow: visible;
-  text-overflow: clip;
-  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 export const Title = styled.div`
@@ -90,31 +87,48 @@ export const Title = styled.div`
   border-bottom: 0.1vh solid #e0dbd1;
 `;
 
-export const PageWrapper = styled.div`
-  position: absolute;
-  bottom: 0vh;
+export const SubTitle = styled.div`
+  padding-left: 5vw;
+  padding-right: 5vw;
 
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const PageDisplay = styled.div`
-  position: absolute;
   font-size: 2.5vh;
+  text-align: center;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+
+  > span {
+    color: #f5f9ad;
+    filter: drop-shadow(0 0 0.5vh #fff);
+    margin-right: 1vh;
+  }
 `;
-export const Arrow = styled.button`
+
+export const Word = styled.div`
+  padding-left: 5vw;
+  padding-right: 5vw;
+
+  font-size: 5vh;
+  color: #f5f9ad;
+  text-align: center;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+`;
+
+export const Close = styled.button`
   all: unset;
+
+  position: absolute;
+  top: 0;
+  right: 2vh;
+
   font-size: 4vh;
+  font-family: sans-serif;
 
   cursor: pointer;
 
   :hover {
     filter: brightness(125%);
-  }
-  :nth-child(1) {
-    margin-right: 10vh;
   }
 `;
