@@ -16,6 +16,7 @@ function App() {
         <Logo />
         <Routes>
           <Route path="/" element={<P.Home />} />
+          <Route path="/settings" element={<P.Settings />} />
           <Route path="/play" element={<P.Play />} />
         </Routes>
       </Wrapper>
