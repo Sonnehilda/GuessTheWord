@@ -1,4 +1,5 @@
 import React from "react";
+import { onClick, onHover } from "../assets/sfxFunc";
 import * as S from "../styles/footer";
 
 const Footer = React.memo(function Footer() {
@@ -8,6 +9,8 @@ const Footer = React.memo(function Footer() {
         <S.Copyright>
           <span>Powered by Pexels!</span>
           <S.Icon
+            onMouseEnter={onHover}
+            onMouseDown={onClick}
             href="http://pexels.com/"
             data-toggle="tooltip"
             title="Visit Pexels.com"

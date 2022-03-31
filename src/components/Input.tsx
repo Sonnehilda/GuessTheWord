@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addScore } from "../store/score/actions";
+import { setTime } from "../store/time/actions";
 import * as S from "../styles/play";
 
 const stringSimilarity: any = require("string-similarity");
@@ -84,6 +85,7 @@ const Input = React.memo(function Input({
 
     if (Math.floor(similarity) === 1) {
       dispatch(addScore(1));
+      dispatch(setTime(200));
       setStatus(true);
     }
   };

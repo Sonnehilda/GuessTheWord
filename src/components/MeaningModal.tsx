@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { onClick, onHover } from "../assets/sfxFunc";
 import * as S from "../styles/meaning";
 
 interface Definition {
@@ -33,18 +34,38 @@ const MeaningModal = ({ word, meaning }: MeaningProps) => {
           <S.Meaning>
             {meaning &&
               meaning[page] &&
-              meaning[page].definition?.replaceAll(word, "[ ]")}
+              meaning[page].definition?.replaceAll(word.toLowerCase(), "[ ]")}
           </S.Meaning>
           <S.PageWrapper>
-            <S.Arrow onClick={() => movePage(-1)}>◀</S.Arrow>
+            <S.Arrow
+              onMouseEnter={onHover}
+              onClick={() => {
+                onClick();
+                movePage(-1);
+              }}
+            >
+              ◀
+            </S.Arrow>
             <S.PageDisplay>{page + 1}</S.PageDisplay>
-            <S.Arrow onClick={() => movePage(1)}>▶</S.Arrow>
+            <S.Arrow
+              onMouseEnter={onHover}
+              onClick={() => {
+                onClick();
+                movePage(1);
+              }}
+            >
+              ▶
+            </S.Arrow>
           </S.PageWrapper>
         </S.Wrapper>
       )}
       <S.Button
+        onMouseEnter={onHover}
         disabled={openState === true ? true : false}
-        onClick={() => setOpenState(!openState)}
+        onClick={() => {
+          onClick();
+          setOpenState(!openState);
+        }}
       >
         See Meanings...
       </S.Button>

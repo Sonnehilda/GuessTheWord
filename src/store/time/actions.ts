@@ -1,9 +1,9 @@
-import { tickTimeType, addTimeType } from "./types";
+import { tickTimeType, setTimeType } from "./types";
 
 export const tickTime = (resetData: any) => {
   return { type: tickTimeType, resetData: resetData };
 };
 
-export const addTime = (num: number) => {
-  return { type: addTimeType, payload: num };
+export const setTime = (num: number) => {
+  return { type: setTimeType, payload: num };
 };

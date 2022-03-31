@@ -1,4 +1,4 @@
-import { tickTimeType, addTimeType } from "./types";
+import { tickTimeType, setTimeType } from "./types";
 
 const time: number = 200;
 
@@ -17,9 +17,8 @@ const timeReducer = (state = time, action: ReducerType) => {
         action.resetData();
         return (state = 200);
       }
-    case addTimeType:
-      if (state + action.payload <= 200) return state + action.payload;
-      else return (state = 200);
+    case setTimeType:
+      return (state = action.payload);
     default:
       return state;
   }
