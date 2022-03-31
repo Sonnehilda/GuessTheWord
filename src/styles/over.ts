@@ -1,59 +1,5 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
-  all: unset;
-  background-image: repeating-linear-gradient(
-    45deg,
-    #e0dbd1,
-    transparent 0.1vh,
-    transparent 0,
-    transparent 0.5vh
-  );
-
-  margin-top: 2vh;
-
-  width: 20vh;
-  height: 5vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 2vh;
-
-  border: 0.1vh solid #e0dbd1;
-  border-radius: 1.5vh;
-  box-sizing: border-box;
-
-  cursor: pointer;
-  transition: filter 0.25s;
-
-  :hover {
-    background-image: repeating-linear-gradient(
-      45deg,
-      #e0dbd1,
-      transparent 0.1vh,
-      transparent 0,
-      transparent 0.3vh
-    );
-
-    filter: drop-shadow(0 0 0.5vh #fff);
-
-    @keyframes pattern {
-      from {
-        font-style: normal;
-      }
-      to {
-        font-style: oblique 20deg;
-      }
-    }
-    animation: pattern 0.5s linear infinite;
-  }
-  :disabled {
-    display: none;
-  }
-`;
-
 export const Wrapper = styled.div`
   position: fixed;
   background: rgba(0, 0, 0, 0.875);
@@ -75,11 +21,13 @@ export const TitleWrapper = styled.div`
 
 export const Title = styled.div`
   margin: 0 auto;
+  margin-top: 1vh;
   margin-bottom: 2vh;
+  padding-bottom: 1vh;
 
   width: 85%;
 
-  font-size: 5.5vh;
+  font-size: 6vh;
 
   display: flex;
   justify-content: center;
@@ -91,7 +39,7 @@ export const SubTitle = styled.div`
   padding-left: 5vw;
   padding-right: 5vw;
 
-  font-size: 2.5vh;
+  font-size: 3vh;
   text-align: center;
   overflow: visible;
   text-overflow: clip;
@@ -99,6 +47,7 @@ export const SubTitle = styled.div`
 
   > span {
     color: #f5f9ad;
+
     filter: drop-shadow(0 0 0.5vh #fff);
   }
 `;
@@ -107,7 +56,7 @@ export const Word = styled.div`
   padding-left: 5vw;
   padding-right: 5vw;
 
-  font-size: 5vh;
+  font-size: 6vh;
   color: #f5f9ad;
   text-align: center;
   overflow: visible;

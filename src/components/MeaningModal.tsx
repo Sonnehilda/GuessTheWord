@@ -27,7 +27,7 @@ const MeaningModal = ({ word, meaning }: MeaningProps) => {
 
   return (
     <>
-      {openState === true ? (
+      {openState === true && (
         <S.Wrapper onClick={closeModal}>
           <S.Title>Meanings</S.Title>
           <S.Meaning>
@@ -41,11 +41,13 @@ const MeaningModal = ({ word, meaning }: MeaningProps) => {
             <S.Arrow onClick={() => movePage(1)}>▶</S.Arrow>
           </S.PageWrapper>
         </S.Wrapper>
-      ) : (
-        <S.Button onClick={() => setOpenState(!openState)}>
-          See Meanings...
-        </S.Button>
       )}
+      <S.Button
+        disabled={openState === true ? true : false}
+        onClick={() => setOpenState(!openState)}
+      >
+        See Meanings...
+      </S.Button>
     </>
   );
 };

@@ -39,15 +39,25 @@ export const Copyright = styled.div`
   align-items: center;
 
   > span {
-    margin-right: 1vh;
+    margin-right: 0.75vh;
   }
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.a`
+  background-image: url("https://static.wixstatic.com/media/0231aa_31450e4c390541a69473c0c5747c7c9a~mv2.png/v1/fill/w_280,h_280,al_c,usm_0.66_1.00_0.01,enc_auto/pexels.png");
+  background-size: 2.5vh 2.5vh;
+
   width: 2.5vh;
   height: 2.5vh;
-  margin-left: 1vh;
+  margin-left: 0.75vh;
 
   border-radius: 1.5vh;
   border: 0.1vh solid #e0dbd1;
+
+  cursor: pointer;
+  transition: filter 0.25s;
+
+  :hover {
+    filter: brightness(125%);
+  }
 `;

@@ -48,8 +48,7 @@ const Input = React.memo(function Input({
         }
       }
     }
-    console.log(currentRef);
-    console.log(word.length);
+
     if (currentRef + 1 <= word.length) {
       if (key.length === 1 || key === "ARROWRIGHT") {
         e.preventDefault();

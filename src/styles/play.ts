@@ -51,6 +51,10 @@ export const Button = styled.button`
     }
     animation: pattern 0.5s linear infinite;
   }
+
+  :disabled {
+    filter: brightness(75%);
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -77,11 +81,11 @@ export const Status = styled.div<StatusProps>`
   @keyframes fade {
     0% {
       opacity: 0;
-      margin-top: 25vh;
+      margin-top: 30.75vh;
     }
     50% {
       opacity: 1;
-      margin-top: 12.5vh;
+      margin-top: 15.325vh;
     }
     100% {
       opacity: 0;
@@ -90,12 +94,12 @@ export const Status = styled.div<StatusProps>`
   }
   animation: fade 3s ease-in-out;`
       : `
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.75);
 
   display: flex;
   justify-content: center;
   
-  margin-top: 29.5vh;
+  margin-top: 30.75vh;
 
   font-size: 4vh;
   
@@ -128,10 +132,7 @@ export const Image = styled.img<StatusProps>`
     props.status === true ? "filter: brightness(75%) blur(0.25vh)" : ""}
 `;
 
-export const InputWrapper = styled.div`
-  width: max-content;
-  height: max-content;
-`;
+export const InputWrapper = styled.div``;
 
 export const Input = styled.input`
   all: unset;
@@ -143,34 +144,19 @@ export const Input = styled.input`
   height: 4vh;
 
   font-size: 3vh;
-  color: "#e0dbd1";
+  color: #e0dbd1;
   text-align: center;
 
-  border-bottom: 0.1vh solid rgba(224, 219, 209, 1);
+  border-bottom: 0.1vh solid #e0dbd1;
   box-sizing: border-box;
-
-  transition: border-bottom 0.25s;
-
-  :focus {
-    border-bottom: 0.1vh solid rgba(224, 219, 209, 1);
-  }
-`;
-
-export const Similarity = styled.div`
-  font-size: 1.5vh;
-  text-align: center;
-  overflow: visible;
-  text-overflow: clip;
-  white-space: normal;
 `;
 
 export const Time = styled.div`
-  font-size: 1.5vh;
+  font-size: 2.5vh;
 `;
 
 export const TimebarWrapper = styled.div`
   width: 27.5vh;
-  height: 1rem;
 
   display: inline-flex;
   justify-content: center;

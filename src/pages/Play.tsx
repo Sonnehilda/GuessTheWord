@@ -131,6 +131,7 @@ function Home() {
         </>
       ) : (
         <S.Button
+          disabled={openState === true ? true : false}
           onClick={() => {
             dispatch(setScore(0));
             setCompliment(
