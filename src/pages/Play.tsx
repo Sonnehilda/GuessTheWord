@@ -45,7 +45,7 @@ function Home() {
   }, [status]);
 
   const initWord = () => {
-    wordRef.current = randomWords().toLowerCase();
+    wordRef.current = randomWords().toUpperCase();
   };
 
   const initMeaning = async () => {
@@ -120,7 +120,11 @@ function Home() {
           {status === false && (
             <>
               <MeaningModal word={word} meaning={meaning} />
-              <Input word={wordRef.current} setStatus={setStatus} />
+              <Input
+                status={status}
+                word={wordRef.current}
+                setStatus={setStatus}
+              />
               <Timer resetData={resetData} />
             </>
           )}

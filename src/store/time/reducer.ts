@@ -1,6 +1,6 @@
 import { tickTimeType, addTimeType } from "./types";
 
-const time: number = 200;
+const time: number = 2000;
 
 interface ReducerType {
   time: number;

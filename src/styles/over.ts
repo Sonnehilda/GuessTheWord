@@ -100,7 +100,6 @@ export const SubTitle = styled.div`
   > span {
     color: #f5f9ad;
     filter: drop-shadow(0 0 0.5vh #fff);
-    margin-right: 1vh;
   }
 `;
 

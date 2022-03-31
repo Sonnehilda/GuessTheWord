@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Logo = styled(Link)`
   color: #e0dbd1;
-  font-size: 5.5vh;
+  font-size: 8vh;
   text-decoration: none;
 
   cursor: pointer;
@@ -48,7 +48,7 @@ export const Button = styled(Link)`
   align-items: center;
   justify-content: center;
 
-  font-size: 3vh;
+  font-size: 4vh;
 
   border: 0.1vh solid #e0dbd1;
   border-radius: 1.5vh;

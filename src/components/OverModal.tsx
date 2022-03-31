@@ -25,7 +25,7 @@ const OverModal = ({ word, setOpenState }: OverProps) => {
         <S.Title>Game Over!</S.Title>
         <S.TitleWrapper>
           <S.SubTitle>Word was...</S.SubTitle>
-          <S.Word>{word.toUpperCase()}</S.Word>
+          <S.Word>{word}</S.Word>
           <S.SubTitle>
             You've guessed <span>{scoreCount}</span> word(s)!
           </S.SubTitle>

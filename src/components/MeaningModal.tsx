@@ -20,7 +20,8 @@ const MeaningModal = ({ word, meaning }: MeaningProps) => {
 
   const movePage = (num: number) => {
     if (page + num >= 0) {
-      if (meaning[page + num] !== undefined) setPage(page + num);
+      if (meaning && meaning[page] && meaning[page + num] !== undefined)
+        setPage(page + num);
     }
   };
 
@@ -30,7 +31,9 @@ const MeaningModal = ({ word, meaning }: MeaningProps) => {
         <S.Wrapper onClick={closeModal}>
           <S.Title>Meanings</S.Title>
           <S.Meaning>
-            {meaning[page].definition?.replaceAll(word, "[ ]")}
+            {meaning &&
+              meaning[page] &&
+              meaning[page].definition?.replaceAll(word, "[ ]")}
           </S.Meaning>
           <S.PageWrapper>
             <S.Arrow onClick={() => movePage(-1)}>◀</S.Arrow>

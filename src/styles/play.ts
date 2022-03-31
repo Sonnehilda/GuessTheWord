@@ -21,7 +21,7 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
 
-  font-size: 3vh;
+  font-size: 4vh;
 
   border: 0.1vh solid #e0dbd1;
   border-radius: 1.5vh;
@@ -50,9 +50,6 @@ export const Button = styled.button`
       }
     }
     animation: pattern 0.5s linear infinite;
-  }
-  :disabled {
-    display: none;
   }
 `;
 
@@ -100,7 +97,7 @@ export const Status = styled.div<StatusProps>`
   
   margin-top: 29.5vh;
 
-  font-size: 2.5vh;
+  font-size: 4vh;
   
   border-bottom-left-radius: 1.5vh;
   border-bottom-right-radius: 1.5vh;`}
@@ -129,14 +126,6 @@ export const Image = styled.img<StatusProps>`
   transition: filter 0.5s;
   ${(props) =>
     props.status === true ? "filter: brightness(75%) blur(0.25vh)" : ""}
-`;
-
-export const Word = styled.div`
-  font-size: 4.5vh;
-  text-align: center;
-  overflow: visible;
-  text-overflow: clip;
-  white-space: normal;
 `;
 
 export const InputWrapper = styled.div`

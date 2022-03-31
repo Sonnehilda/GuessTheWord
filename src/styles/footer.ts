@@ -32,7 +32,7 @@ export const Footer = styled.footer`
 `;
 
 export const Copyright = styled.div`
-  font-size: 1.5vh;
+  font-size: 2.5vh;
 
   display: inline-flex;
   justify-content: space-evenly;
