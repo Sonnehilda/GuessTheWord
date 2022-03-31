@@ -67,7 +67,6 @@ const Input = React.memo(function Input({ word, setStatus }: InputProps) {
 
   return (
     <>
-      {" "}
       <S.InputWrapper>
         {word.split("").map((i, index) => {
           return (
@@ -76,7 +75,7 @@ const Input = React.memo(function Input({ word, setStatus }: InputProps) {
               key={index}
               ref={(input) => (inputRef.current[index] = input)}
               maxLength={1}
-              onKeyDown={(e) => onKeyDown(e)}
+              onKeyDown={onKeyDown}
               autoComplete="off"
             />
           );

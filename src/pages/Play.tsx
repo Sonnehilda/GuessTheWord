@@ -5,40 +5,17 @@ import * as S from "../styles/play";
 import Input from "../components/Input";
 import Timer from "../components/Timer";
 import Meaning from "../components/Meaning";
+import { compliments } from "../assets/fonts/compliments";
 
 const randomWords = require("random-words");
 
 function Home() {
-  const compliments: string[] = [
-    "Amazing!",
-    "Awesome!",
-    "Beautiful!",
-    "Bravo!",
-    "Brilliant!",
-    "Clever!",
-    "Cool!",
-    "Excellent!",
-    "Fabulous!",
-    "Fantastic!",
-    "Good Job!",
-    "Great Job!",
-    "Impressive!",
-    "Incredible!",
-    "Magnificent!",
-    "Nice!",
-    "Outstanding!",
-    "Perfect!",
-    "Smart!",
-    "Terrific!",
-    "Wonderful!",
-  ];
-
   const [word, setWord] = useState<string>("");
   const [meaning, setMeaning] = useState<object[]>([]);
   const [photograph, setPhotograph] = useState<string>("");
   const [photographer, setPhotographer] = useState<string>("");
-  const [compliment, setCompliment] = useState<string>("");
   const [status, setStatus] = useState<boolean>(false);
+  const [compliment, setCompliment] = useState<string>("");
 
   const wordRef = useRef<string>("");
 
@@ -49,10 +26,12 @@ function Home() {
       };
       asyncFunc().then(() => {
         setTimeout(() => {
-          setStatus(false);
-          setCompliment(
-            compliments[Math.floor(Math.random() * compliments.length)]
-          );
+          if (status === true) {
+            setStatus(false);
+            setCompliment(
+              compliments[Math.floor(Math.random() * compliments.length)]
+            );
+          }
         }, 3000);
       });
     }
@@ -71,7 +50,7 @@ function Home() {
       })
       .catch((err) => {
         setMeaning([]);
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -93,7 +72,7 @@ function Home() {
       .catch((err) => {
         setPhotograph("");
         setPhotographer("Picture Not Included");
-        console.log(err);
+        console.error(err);
       });
     setWord(wordRef.current);
   };
@@ -105,7 +84,13 @@ function Home() {
   };
 
   const resetData = () => {
-    console.log("END");
+    wordRef.current = "";
+    //setWord("");
+    //setMeaning([]);
+    setPhotograph("");
+    setPhotographer("");
+    setStatus(false);
+    setCompliment("");
   };
 
   console.log(word);
