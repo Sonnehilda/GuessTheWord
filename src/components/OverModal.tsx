@@ -35,7 +35,7 @@ const OverModal = ({ word, setOpenState }: OverProps) => {
           <S.Word>{word}</S.Word>
           <S.SubTitle>
             {lang === "KR" ? "당신은 " : "You've guessed "}
-            <span>{scoreCount}</span>
+            <span>{scoreCount}</span>{" "}
             {lang === "KR" ? " 개의 단어를 추측했습니다!" : "word(s)!"}
           </S.SubTitle>
         </S.TitleWrapper>

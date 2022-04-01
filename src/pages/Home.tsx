@@ -6,7 +6,6 @@ const Theme = require("../assets/bgms/theme.mp3");
 
 function Home() {
   const lang: string = localStorage.getItem("language") || "EN";
-  console.log(lang);
 
   const BGM = new Audio(Theme);
 

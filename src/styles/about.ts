@@ -62,7 +62,7 @@ export const Copyable = styled.p<CopyableProps>`
       margin-top: 1vh;
 
       width: 100%;
-      height: 2.5vh;
+      height: 3vh;
 
       display: flex;
       justify-content: center;
