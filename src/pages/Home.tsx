@@ -63,7 +63,7 @@ function Home() {
       <S.Button onMouseEnter={onHover} onClick={onClick} to="/settings">
         {lang === "KR" ? "설정" : "SETTINGS"}
       </S.Button>
-      <S.Button onMouseEnter={onHover} onClick={onClick} to="/">
+      <S.Button onMouseEnter={onHover} onClick={onClick} to="/about">
         {lang === "KR" ? "소개" : "ABOUT"}
       </S.Button>
     </>

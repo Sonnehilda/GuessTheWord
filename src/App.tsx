@@ -16,8 +16,9 @@ function App() {
         <Logo />
         <Routes>
           <Route path="/" element={<P.Home />} />
-          <Route path="/settings" element={<P.Settings />} />
           <Route path="/play" element={<P.Play />} />
+          <Route path="/settings" element={<P.Settings />} />
+          <Route path="/about" element={<P.About />} />
         </Routes>
       </Wrapper>
       <Footer />
