@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import * as S from "../styles/play";
+import * as S from "./styles";
 
-import Input from "../components/Input";
-import Timer from "../components/Timer";
-import MeaningModal from "../components/MeaningModal";
-import { compliments } from "../assets/compliments";
-import OverModal from "../components/OverModal";
-import { setScore } from "../store/score/actions";
-import { onClick, onHover } from "../assets/sfxFunc";
+import Input from "../../components/Input";
+import Timer from "../../components/Timer";
+import MeaningModal from "../../components/MeaningModal";
+import { compliments } from "../../assets/compliments";
+import OverModal from "../../components/OverModal";
+import { setScore } from "../../store/score/actions";
+import { onClick, onHover } from "../../assets/sfxFunc";
 
 const randomWords = require("random-words");
 

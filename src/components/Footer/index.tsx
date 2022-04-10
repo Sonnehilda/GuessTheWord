@@ -1,6 +1,6 @@
 import React from "react";
-import { onClick, onHover } from "../assets/sfxFunc";
-import * as S from "../styles/footer";
+import { onClick, onHover } from "../../assets/sfxFunc";
+import * as S from "./styles";
 
 const Footer = React.memo(function Footer() {
   const lang: string = localStorage.getItem("language") || "EN";

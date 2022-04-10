@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { onClick, onHover, updateSettings } from "../assets/sfxFunc";
-import * as S from "../styles/settings";
+import { onClick, onHover, updateSettings } from "../../assets/sfxFunc";
+import * as S from "./styles";
 
 const Theme = require("../assets/bgms/theme.mp3");
 

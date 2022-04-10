@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { onClick, onHover } from "../assets/sfxFunc";
-import * as S from "../styles/meaning";
+import { useState } from "react";
+import { onClick, onHover } from "../../assets/sfxFunc";
+import * as S from "./styles";
 
 interface Definition {
   definition?: string;

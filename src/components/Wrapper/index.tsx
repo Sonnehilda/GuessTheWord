@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "../styles/home";
+import * as S from "./styles";
 
 function Wrapper({ children }: any) {
   return <S.Wrapper>{children}</S.Wrapper>;

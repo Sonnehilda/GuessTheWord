@@ -1,6 +1,5 @@
-import React from "react";
-import { onClick, onHover } from "../assets/sfxFunc";
-import * as S from "../styles/home";
+import { onClick, onHover } from "../../assets/sfxFunc";
+import * as S from "./styles";
 
 function Logo() {
   const lang: string = localStorage.getItem("language") || "EN";

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { tickTime } from "../store/time/actions";
+import { useEffect } from "react";
+import { tickTime } from "../../store/time/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-import * as S from "../styles/play";
-import store from "../store/store";
+import * as S from "./styles";
+import store from "../../store/store";
 
 type RootState = ReturnType<typeof store.getState>;
 interface Props {

@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import * as S from "../styles/over";
+import * as S from "./styles";
 
-import store from "../store/store";
-import { onClick, onHover } from "../assets/sfxFunc";
+import store from "../../store/store";
+import { onClick, onHover } from "../../assets/sfxFunc";
 
 type setBooleanState = React.Dispatch<React.SetStateAction<boolean>>;
 type RootState = ReturnType<typeof store.getState>;
