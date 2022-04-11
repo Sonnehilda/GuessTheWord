@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { onClick, onHover, updateSettings } from "../../assets/sfxFunc";
 import * as S from "./styles";
 
-const Theme = require("../assets/bgms/theme.mp3");
+const Theme = require("../../assets/bgms/theme.mp3");
 
 function Settings() {
   const BGM = new Audio(Theme);

@@ -13,9 +13,9 @@ import { onClick, onHover } from "../../assets/sfxFunc";
 
 const randomWords = require("random-words");
 
-const Game = require("../assets/bgms/game.mp3");
-const Correct = require("../assets/sfxes/correct.mp3");
-const Over = require("../assets/sfxes/over.mp3");
+const Game = require("../../assets/bgms/game.mp3");
+const Correct = require("../../assets/sfxes/correct.mp3");
+const Over = require("../../assets/sfxes/over.mp3");
 
 function Play() {
   const lang: string = localStorage.getItem("language") || "EN";

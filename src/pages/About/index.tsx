@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { onClick, onHover } from "../../assets/sfxFunc";
 import * as S from "./styles";
 
-const Theme = require("../assets/bgms/theme.mp3");
+const Theme = require("../../assets/bgms/theme.mp3");
 
 function About() {
   const lang: string = localStorage.getItem("language") || "EN";
